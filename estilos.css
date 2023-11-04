@@ -1,0 +1,24 @@
+body {
+  padding: 3rem;
+  background-color: #404040;
+  color: #f9f9f9;
+  font-family: 'Cascadia Code', monospace;
+}
+
+.select {
+  padding: 1rem;
+  margin: 1rem;
+  border-radius: .4rem;
+}
+
+div {
+  background-color: orange;
+  padding: 1rem;
+  border-radius: .4rem;
+}
+
+.input {
+  border-radius: .4rem;
+  height: 2rem;
+  border: none;
+}
