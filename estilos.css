@@ -22,3 +22,20 @@ div {
   height: 2rem;
   border: none;
 }
+
+.box-button {
+  margin-top: 1rem;
+  background-color: green;
+}
+
+.button {
+  height: 2rem;
+  border-radius: .4rem;
+  border: none
+}
+
+.input-donacion {
+  border-radius: .4rem;
+  height: 2rem;
+  border: none;
+}
