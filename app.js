@@ -30,4 +30,15 @@ const resultado = () => {
     inputDivisa.value = result.toFixed(2);
   })
 }
+const restultadoInverso = () => {
+  inputDivisa.addEventListener('keyup', () => {
+    const indice = select.selectedIndex;
+    const valor = select[indice].value;
+    const divisa = inputDivisa.value;
+    const result = divisa / valor;
+    inputEuros.value = result.toFixed(2);
+  })
+}
 resultado();
+restultadoInverso();
+
