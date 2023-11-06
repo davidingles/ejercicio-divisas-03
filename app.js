@@ -1,1 +1,1 @@
-import './calculadora-divisas.js'
+import './david.js'

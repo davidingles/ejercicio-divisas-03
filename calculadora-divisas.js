@@ -11,23 +11,14 @@ const select = document.querySelector('#select');
 const inputEuros = document.querySelector('#inputEuros');
 const inputDivisa = document.querySelector('#inputDivisa');
 const span = document.querySelector('#span');
+let cambio = 0;
 
 CAMBIOS.map(cambio => {
   select.insertAdjacentHTML('beforeend', `<option value="${cambio.elCambio}">${cambio.moneda}</option>`)
 })
-
-const elijoMoneda = () => {
-  select.addEventListener('change', () => {
-    const indice = select.selectedIndex;
-    span.textContent = `El valor es de ${select[indice].value} €`
-    let precio = select[indice].value;
-    document.querySelector('#inputEuros').focus();
-    inputDivisa.value = (precio * inputEuros.value).toFixed(2);
-  })
-}
-elijoMoneda();
-
+// elijoMoneda();
 const resultado = () => {
+  cambio = 1
   inputEuros.addEventListener('change', () => {
     const indice = select.selectedIndex;
     const valor = parseFloat(select[indice].value);
@@ -37,8 +28,8 @@ const resultado = () => {
     return result;
   });
 };
-
 const resultadoInverso = () => {
+  cambio = 2
   inputDivisa.addEventListener('input', () => {
     const indice = select.selectedIndex;
     const valor = parseFloat(select[indice].value);
@@ -48,6 +39,28 @@ const resultadoInverso = () => {
     return result;
   });
 };
+
+document.querySelector('#inputEuros').addEventListener('keyup', resultado);
+document.querySelector('#inputDivisa').addEventListener('keyup', resultadoInverso);
+select.addEventListener('change', recalcular)
+function recalcular() {
+  elijoMoneda();
+  (cambio === 1) ? resultado() : resultadoInverso();
+}
+
+const elijoMoneda = () => {
+  select.addEventListener('change', () => {
+    const indice = select.selectedIndex;
+    span.textContent = `El valor es de ${select[indice].value} €`
+    recalcular()
+
+    // let precio = select[indice].value;
+    // inputDivisa.value = (precio * inputEuros.value).toFixed(2);
+  })
+}
+elijoMoneda();
+
+
 
 resultado();
 resultadoInverso();
@@ -61,6 +74,13 @@ function donar() {
     const resultadoMultiplicacion = Number(inputEuros) * 0.5;
     donacion += resultadoMultiplicacion;
     inputDonar.value = donacion.toFixed(2);
+    limpiar();
   });
+}
+function limpiar() {
+  document.querySelector('#inputEuros').value = '';
+  document.querySelector('#inputDivisa').value = '';
+  document.querySelector('#span').textContent = '';
+  document.querySelector('#inputEuros').focus();
 }
 donar();
